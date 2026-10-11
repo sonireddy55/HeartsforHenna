@@ -8,7 +8,7 @@
 <title>Hearts for Henna UF</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Cinzel:wght@600&family=Rochester&family=Figtree:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Rochester&family=Jost:wght@400;500&display=swap">
 <link rel="stylesheet" href="styles.css">
 <style>
   :root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -18,100 +18,120 @@
 </style>
 </head>
 <body>
-<header class="top">
-  <div class="wrap">
-    <a class="brand" href="#top"><img src="logo.png" alt="">Hearts for Henna</a>
-    <nav aria-label="Sections"><ul>
-      <li><a href="#about">About</a></li>
-      <li><a href="#henna">Henna</a></li>
-      <li><a href="#impact">Impact</a></li>
-      <li><a href="#officers">Officers</a></li>
-      <li><a href="#events">Events</a></li>
-      <li><a href="#gallery">Gallery</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul></nav>
+<div class="announce"><a href="https://groupme.com/join_group/60295306/9SDdNBzG" target="_blank" rel="noopener">Join the Hearts for Henna GroupMe</a></div>
+
+<div class="menu" id="menu" aria-hidden="true">
+  <button class="pill close" type="button" id="menu-close">Close</button>
+  <div>
+    <p class="script" style="text-align:center">Hearts for Henna</p>
+    <ul>
+      <li style="transition-delay:.15s"><a href="#about">About</a></li>
+      <li style="transition-delay:.2s"><a href="#henna">What is henna</a></li>
+      <li style="transition-delay:.25s"><a href="#impact">Impact</a></li>
+      <li style="transition-delay:.3s"><a href="#officers">Officers</a></li>
+      <li style="transition-delay:.35s"><a href="#events">Events</a></li>
+      <li style="transition-delay:.4s"><a href="#gallery">Gallery</a></li>
+      <li style="transition-delay:.45s"><a href="#contact">Contact</a></li>
+    </ul>
   </div>
-</header>
+</div>
 
 <main id="top">
-  <section class="band hero">
-    <div class="wrap">
+  <section class="hero">
+    <div class="topbar">
+      <a class="brand wordmark" href="#top">Hearts<br>for Henna</a>
+      <button class="menu-btn" type="button" id="menu-open" aria-controls="menu" aria-expanded="false">Menu</button>
+    </div>
+    <div class="wrap inner">
+      <div class="orbit-wrap" id="orbit">
+        <img src="logo.png" alt="Hearts for Henna logo">
+      </div>
+      <h1>Uniting students &amp; charities with henna</h1>
+      <p class="script">at the University of Florida</p>
+      <div class="ctas">
+        <a class="pill light" href="#events">Volunteer sign-ups</a>
+        <a class="pill" href="#about">Meet the club</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="strip">
+    <span class="chev" aria-hidden="true"><span>›</span><span>›</span><span>›</span></span>
+    <a class="pill light" href="https://groupme.com/join_group/60295306/9SDdNBzG" target="_blank" rel="noopener">Join the GroupMe</a>
+    <span class="chev l" aria-hidden="true"><span>‹</span><span>‹</span><span>‹</span></span>
+  </div>
+
+  <section class="band cream" id="about">
+    <div class="wrap split">
       <div>
-        <p class="eyebrow">University of Florida</p>
-        <h1>Hearts for Henna</h1>
-        <p class="tag">uniting students and charities with henna</p>
-        <p class="lede">A service organization that uses henna to raise money for charity and teaches UF students how to apply it.</p>
-        <div class="ctas">
-          <a class="btn solid" href="https://groupme.com/join_group/60295306/9SDdNBzG" target="_blank" rel="noopener">Join the GroupMe</a>
-          <a class="btn line" href="#events">Event sign-ups</a>
-        </div>
-      </div>
-      <div class="seal"><img src="logo.png" alt="Hearts for Henna logo"></div>
-    </div>
-  </section>
-
-  <section class="sec" id="about">
-    <div class="wrap">
-      <div class="head reveal"><h2>About us</h2></div>
-      <div class="about">
-        <p class="statement reveal">Hearts for Henna is a service-based organization that promotes henna as a form of art that can unite and benefit various communities through fundraising and charity events. We also seek to teach UF students how to apply henna through workshops.</p>
+        <div class="title reveal"><span class="lead">Meet</span><h2>Hearts for Henna</h2></div>
+        <p class="caps reveal">Hearts for Henna is a service-based organization that promotes henna as a form of art that can unite and benefit various communities through fundraising and charity events. We also seek to teach UF students how to apply henna through workshops.</p>
         <div class="offers">
-          <div class="offer reveal"><h3>Fundraisers &amp; charity events</h3><p>We do henna at campus events, and the proceeds go to our charity of the year.</p></div>
-          <div class="offer reveal" style="--d:.1s"><h3>Workshops</h3><p>Hands-on sessions where UF students learn how to apply henna.</p></div>
+          <div class="offer reveal" style="--d:.05s"><h3>Fundraisers &amp; charity events</h3><p>Henna at campus events, with proceeds going to our charity of the year.</p></div>
+          <div class="offer reveal" style="--d:.15s"><h3>Workshops</h3><p>Hands-on sessions where UF students learn to apply henna.</p></div>
+        </div>
+        <div class="line-link reveal"><a class="pill dark" href="#events">See our events</a></div>
+      </div>
+      <div class="frame reveal unveil" id="about-photo"></div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true"><div class="run" id="marq-1"></div></div>
+
+  <section class="band blush" id="henna">
+    <div class="blob-deco" aria-hidden="true"></div>
+    <div class="wrap split flip" style="position:relative">
+      <div class="arches">
+        <div class="frame arch reveal unveil" id="henna-a"></div>
+        <div class="frame oval reveal unveil" style="--d:.15s" id="henna-b"></div>
+      </div>
+      <div>
+        <div class="title reveal"><span class="lead">What is</span><h2>Henna?</h2></div>
+        <div style="display:grid;gap:1rem">
+          <p class="caps reveal">Henna is a natural dye that is derived from the dried leaves of the plant <em>Lawsonia inermis</em>. Henna originated over 5,000 years ago in North Africa and the Middle East.</p>
+          <p class="caps reveal">It is often used to decorate the bride's hands and feet for a wedding. A common myth and cultural belief is that when the stain on a bride's hands is darker, it symbolizes that the bride and groom's love is strong.</p>
+          <p class="caps reveal">Henna is also used as a natural hair dye and provides moisture for the scalp.</p>
+        </div>
+        <div class="natural reveal"><b>We use</b><span>100% natural henna</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band burg" id="impact">
+    <div class="wrap impact">
+      <div class="tally reveal slide-l">
+        <div class="title"><span class="lead">Our</span><h2>Impact</h2></div>
+        <p class="label">Total fundraised</p>
+        <span class="amount" id="raised">$0</span>
+        <span class="asof" id="raised-asof"></span>
+      </div>
+      <div class="why reveal slide-r">
+        <div class="dots" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="rows">
+          <p class="sub">Charity of the year</p>
+          <p class="big" id="coty"></p>
+          <p class="sub" style="margin-top:1.4rem">Previous charities</p>
+          <div id="prev" style="display:grid;gap:.5rem"></div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="sec alt" id="henna">
-    <div class="wrap">
-      <div class="head reveal"><h2>What is henna?</h2></div>
-      <div class="henna">
-        <div class="copy reveal">
-          <p>Henna is a natural dye derived from the dried leaves of the plant <em>Lawsonia inermis</em>. It originated over 5,000 years ago in North Africa and the Middle East.</p>
-          <p>Henna is often used to decorate the bride's hands and feet for a wedding. A common myth and cultural belief holds that the darker the stain on a bride's hands, the stronger the love between the bride and groom.</p>
-          <p>Henna is also used as a natural hair dye and provides moisture for the scalp.</p>
-          <p class="natural"><strong>We use 100% natural henna</strong> at every event and workshop.</p>
-        </div>
-        <figure class="reveal" style="--d:.1s" id="henna-photo"></figure>
-      </div>
-    </div>
-  </section>
+  <div class="marquee gold" aria-hidden="true"><div class="run" id="marq-2"></div></div>
 
-  <section class="sec" id="impact">
+  <section class="band cream" id="officers">
     <div class="wrap">
-      <div class="head reveal"><h2>Where the money goes</h2></div>
-      <div class="impact">
-        <div class="tally reveal">
-          <p class="label">Total fundraised</p>
-          <span class="amount" id="raised">$0</span>
-          <span class="asof" id="raised-asof"></span>
-        </div>
-        <div class="charities">
-          <div class="reveal"><p class="label">Charity of the year</p><h3 id="coty"></h3></div>
-          <div class="reveal" style="--d:.1s"><p class="label">Previous charities</p><ul class="prev" id="prev"></ul></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec alt" id="officers">
-    <div class="wrap">
-      <div class="head row reveal">
-        <h2>Meet our officers</h2>
-        <p>Tap a card to read their bio.</p>
-      </div>
+      <div class="title reveal"><span class="lead">Meet our</span><h2>Officers</h2></div>
+      <p class="label reveal" style="margin:-.6rem 0 1.6rem">Tap a card to read their bio</p>
       <div class="track reveal" id="officer-track" aria-label="Officers"></div>
       <div class="bars" id="officer-bars"></div>
     </div>
   </section>
 
-  <section class="sec" id="events">
+  <section class="band blush" id="events">
     <div class="wrap">
-      <div class="head reveal">
-        <h2>Events</h2>
-        <p>Sign-up sheets are posted here as each event opens. New dates also go out on Instagram and in the GroupMe.</p>
-      </div>
+      <div class="title reveal"><span class="lead">Come to our</span><h2>Events</h2></div>
+      <p class="caps reveal" style="max-width:40rem;margin-bottom:2.4rem;text-align:left">Sign-up sheets are posted here as each event opens. New dates also go out on Instagram and in the GroupMe.</p>
       <p class="subhead first">Open sign-ups</p>
       <div class="events" id="open-events"></div>
       <p class="subhead">Past fundraisers</p>
@@ -119,36 +139,30 @@
     </div>
   </section>
 
-  <section class="sec alt" id="gallery">
+  <section class="band cream" id="gallery">
     <div class="wrap">
-      <div class="head row reveal">
-        <h2>Gallery</h2>
-        <p>New designs every two weeks.</p>
-      </div>
+      <div class="title reveal"><span class="lead">Our</span><h2>Gallery</h2></div>
+      <p class="label reveal" style="margin:-.6rem 0 1.6rem">New designs every two weeks</p>
       <div class="track reveal" id="recent-track" aria-label="Recent designs"></div>
       <div class="bars" id="recent-bars"></div>
-      <div class="gallery-ctas">
-        <a class="btn solid" href="gallery.html">See the full gallery</a>
-        <a class="btn line" href="https://www.instagram.com/heartsforhenna/" target="_blank" rel="noopener">More on Instagram</a>
-      </div>
+      <div class="line-link right reveal"><span style="display:flex;gap:.7rem;flex-wrap:wrap"><a class="pill dark" href="gallery.html">See the full gallery</a><a class="pill" href="https://www.instagram.com/heartsforhenna/" target="_blank" rel="noopener">More on Instagram</a></span></div>
     </div>
   </section>
 
   <section class="band contact" id="contact">
-    <div class="wrap">
-      <h2>Contact us</h2>
-      <p class="sub">Questions, collaborations, or henna for a charity event: email us or message us on Instagram.</p>
-      <div class="grid">
-        <div class="email">
-          <span class="lbl">Email</span>
+    <div class="wrap grid">
+      <div>
+        <div class="title reveal"><span class="lead">Say hello to</span><h2>Hearts for Henna</h2></div>
+        <p class="label reveal" style="color:var(--blush)">Email</p>
+        <div class="email-row reveal">
           <span class="addr" id="addr">heartsforhennauf@gmail.com</span>
-          <button class="btn line" id="copy" type="button">Copy email</button>
+          <button class="pill light" id="copy" type="button">Copy email</button>
         </div>
-        <div class="socials">
-          <a href="https://www.instagram.com/heartsforhenna/" target="_blank" rel="noopener"><b>Instagram</b><span>@heartsforhenna</span></a>
-          <a href="https://groupme.com/join_group/60295306/9SDdNBzG" target="_blank" rel="noopener"><b>GroupMe</b><span>Join the chat</span></a>
-          <a href="https://linktr.ee/heartsforhenna" target="_blank" rel="noopener"><b>Linktree</b><span>All links</span></a>
-        </div>
+      </div>
+      <div class="socials">
+        <a class="reveal slide-r" href="https://www.instagram.com/heartsforhenna/" target="_blank" rel="noopener">Instagram <span>@heartsforhenna</span></a>
+        <a class="reveal slide-r" style="--d:.1s" href="https://groupme.com/join_group/60295306/9SDdNBzG" target="_blank" rel="noopener">GroupMe <span>Join the chat</span></a>
+        <a class="reveal slide-r" style="--d:.2s" href="https://linktr.ee/heartsforhenna" target="_blank" rel="noopener">Linktree <span>All links</span></a>
       </div>
     </div>
   </section>
@@ -157,9 +171,13 @@
 <footer>
   <div class="wrap">
     <a class="brand" href="#top"><img src="logo.png" alt="">Hearts for Henna · UF</a>
-    <p>A service-based student organization at the University of Florida.</p>
+    <nav aria-label="Footer">
+      <a href="#about">About</a><a href="#officers">Officers</a><a href="#events">Events</a><a href="gallery.html">Gallery</a><a href="#contact">Contact</a>
+    </nav>
   </div>
 </footer>
+
+<button class="to-top" id="to-top" type="button">Back to top</button>
 
 <script src="data.js"></script>
 <script src="site.js"></script>
@@ -167,9 +185,39 @@
 (function(){
   const S = window.SITE, { el, photo, carousel, reveal } = window.HFH;
   const $ = s => document.querySelector(s);
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  // henna photo placeholder
-  $("#henna-photo").append(photo(null, "Henna design", "design", "Photo coming soon"));
+  // white hearts orbiting the logo (two rings, opposite directions)
+  const HEART = '<svg viewBox="0 0 24 22" aria-hidden="true"><path d="M12 21.5C5.2 16.3 0 12.2 0 6.8 0 3 2.9 0 6.5 0c2.2 0 4.2 1.1 5.5 2.9C13.3 1.1 15.3 0 17.5 0 21.1 0 24 3 24 6.8c0 5.4-5.2 9.5-12 14.7z"/></svg>';
+  const orbit = $("#orbit");
+  [[{n:9, rr:.47, s:[14,22], o:1}, ""], [{n:7, rr:.39, s:[9,13], o:.7}, " reverse"]].forEach(([cfg, cls]) => {
+    const ring = el("div", "orbit" + cls); ring.setAttribute("aria-hidden", "true");
+    for (let i = 0; i < cfg.n; i++){
+      const h = el("span", "h"); h.innerHTML = HEART;
+      const size = cfg.s[0] + ((i * 7) % (cfg.s[1] - cfg.s[0] + 1));
+      h.style.cssText = `--a:${(360 / cfg.n) * i + (cls ? 20 : 0)}deg;--rr:${cfg.rr};--s:${size}px;--o:${cfg.o};--dl:${(i * .27).toFixed(2)}s`;
+      ring.append(h);
+    }
+    orbit.prepend(ring);
+  });
+
+  // menu overlay
+  const menu = $("#menu"), openBtn = $("#menu-open"), closeBtn = $("#menu-close");
+  const setMenu = on => { menu.classList.toggle("open", on); menu.setAttribute("aria-hidden", on ? "false" : "true"); openBtn.setAttribute("aria-expanded", on ? "true" : "false"); document.body.style.overflow = on ? "hidden" : ""; (on ? closeBtn : openBtn).focus(); };
+  openBtn.addEventListener("click", () => setMenu(true));
+  closeBtn.addEventListener("click", () => setMenu(false));
+  menu.querySelectorAll("a").forEach(a => a.addEventListener("click", () => setMenu(false)));
+  addEventListener("keydown", e => { if (e.key === "Escape" && menu.classList.contains("open")) setMenu(false); });
+
+  // marquees
+  const fillMarq = (id, words) => { const r = $(id); const chunk = words.map(w => `<span>${w}</span>`).join(""); r.innerHTML = chunk.repeat(4) + chunk.repeat(4); };
+  fillMarq("#marq-1", ["Henna for a cause", "100% natural henna", "Hearts for Henna UF"]);
+  fillMarq("#marq-2", ["Come get henna", "Support Food 4 Kids", "Join the GroupMe"]);
+
+  // photo placeholders
+  $("#about-photo").append(photo(null, "Hearts for Henna members", "design", "Club photo coming soon"));
+  $("#henna-a").append(photo(null, "Henna design", "design", "Photo coming soon"));
+  $("#henna-b").append(photo(null, "Henna design", "design", "Photo coming soon"));
 
   // officers: flip cards in one auto-scrolling row
   const ot = $("#officer-track"), cards = [];
@@ -179,36 +227,32 @@
     card.setAttribute("aria-label", o.name + ", " + o.role + ". Show bio");
     const flip = el("div", "flip");
     const front = el("div", "face front");
-    const fm = el("div"); fm.append(el("p", "name", o.name), el("p", "role", o.role), el("p", "cue", "Read bio"));
+    const fm = el("div"); fm.append(el("p", "role", o.role), el("p", "name", o.name), el("p", "cue", "Tap for bio"));
     front.append(photo(o.photo, o.name, "person"), fm);
     const back = el("div", "face back"); back.setAttribute("aria-hidden", "true");
     back.append(el("p", "role", o.role), el("p", "name", o.name), el("p", "bio", o.bio || ""), el("p", "cue", "Tap to flip back"));
     flip.append(front, back); card.append(flip); ot.append(card); cards.push(card);
   });
-  const officerCarousel = carousel(ot, { interval: 3200, bars: $("#officer-bars") });
-  const toggle = card => {
-    const on = !card.classList.contains("flipped");
-    card.classList.toggle("flipped", on);
-    card.setAttribute("aria-pressed", on ? "true" : "false");
-    card.querySelector(".back").setAttribute("aria-hidden", on ? "false" : "true");
-    card.querySelector(".front").setAttribute("aria-hidden", on ? "true" : "false");
-    officerCarousel?.hold("flip", cards.some(c => c.classList.contains("flipped")));
+  const oc = carousel(ot, { interval: 3200, bars: $("#officer-bars") });
+  const toggle = c => {
+    const on = !c.classList.contains("flipped");
+    c.classList.toggle("flipped", on); c.setAttribute("aria-pressed", on ? "true" : "false");
+    c.querySelector(".back").setAttribute("aria-hidden", on ? "false" : "true");
+    c.querySelector(".front").setAttribute("aria-hidden", on ? "true" : "false");
+    oc?.hold("flip", cards.some(x => x.classList.contains("flipped")));
   };
-  cards.forEach(c => {
-    c.addEventListener("click", () => toggle(c));
-    c.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " "){ e.preventDefault(); toggle(c); } });
-  });
+  cards.forEach(c => { c.addEventListener("click", () => toggle(c)); c.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " "){ e.preventDefault(); toggle(c); } }); });
 
   // impact
   const amt = $("#raised"), target = S.fundraised.amount, fmt = n => "$" + Math.round(n).toLocaleString("en-US");
   amt.textContent = fmt(target);
   $("#raised-asof").textContent = "Running total as of " + S.fundraised.asOf;
   $("#coty").textContent = S.charityOfTheYear;
-  S.previousCharities.forEach(c => $("#prev").append(el("li", null, c)));
-  if (!matchMedia("(prefers-reduced-motion: reduce)").matches && "IntersectionObserver" in window && amt.getBoundingClientRect().top > innerHeight){
+  S.previousCharities.forEach(c => $("#prev").append(el("p", null, c)));
+  if (!reduce && "IntersectionObserver" in window && amt.getBoundingClientRect().top > innerHeight){
     amt.textContent = fmt(0);
     const io = new IntersectionObserver(es => { if (!es[0].isIntersecting) return; io.disconnect();
-      const t0 = performance.now(), dur = 1300;
+      const t0 = performance.now(), dur = 1500;
       const step = t => { const p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3); amt.textContent = fmt(target * e); if (p < 1) requestAnimationFrame(step); };
       requestAnimationFrame(step);
     }, { threshold: .5 });
@@ -217,12 +261,12 @@
 
   // events
   const card = (ev, open, i) => {
-    const a = el("article", "event reveal" + (open ? " open" : "")); a.style.setProperty("--d", (i * .08) + "s");
+    const a = el("article", "event reveal" + (open ? " open" : "")); a.style.setProperty("--d", (i * .1) + "s");
     const top = el("div", "top"); top.append(el("span", "when", ev.when), el("span", "status", open ? "Sign-up open" : "Past event"));
     a.append(top, el("h3", null, ev.name));
     if (ev.details?.length){ const dl = el("dl", "meta"); ev.details.forEach(([k, v]) => dl.append(el("dt", null, k), el("dd", null, v))); a.append(dl); }
     if (ev.prices){ const p = el("div", "prices"); ev.prices.forEach(([m, s]) => { const d = el("div", "price"); d.append(el("b", null, m), el("small", null, s)); p.append(d); }); a.append(p); }
-    if (open && ev.signup){ const b = el("a", "btn solid", "Sign up"); b.href = ev.signup; b.target = "_blank"; b.rel = "noopener"; b.style.justifySelf = "start"; a.append(b); }
+    if (open && ev.signup){ const b = el("a", "pill", "Sign up"); b.href = ev.signup; b.target = "_blank"; b.rel = "noopener"; a.append(b); }
     return a;
   };
   S.openEvents.forEach((e, i) => $("#open-events").append(card(e, true, i)));
@@ -245,6 +289,11 @@
     catch (_) { const r = document.createRange(); r.selectNodeContents($("#addr")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = "Selected"; }
     setTimeout(() => b.textContent = "Copy email", 2200);
   });
+
+  // back to top
+  const tt = $("#to-top");
+  addEventListener("scroll", () => tt.classList.toggle("show", scrollY > innerHeight * .8), { passive: true });
+  tt.addEventListener("click", () => scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" }));
 
   reveal();
 })();

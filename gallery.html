@@ -7,40 +7,37 @@
 <title>Hearts for Henna Gallery</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Cinzel:wght@600&family=Figtree:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Rochester&family=Jost:wght@400;500&display=swap">
 <link rel="stylesheet" href="styles.css">
 <style>
-  :root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+  :root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);background:var(--burgundy)}
   body{margin:0}
   img{max-width:100%}
   [hidden]{display:none!important}
 </style>
 </head>
 <body>
-<header class="top">
-  <div class="wrap">
-    <a class="brand" href="index.html" id="home-link"><img src="logo.png" alt="">Hearts for Henna</a>
-    <a class="btn line" href="index.html" id="back-link" style="padding:.55rem 1rem">← Back to home</a>
-  </div>
+<div class="announce"><a href="https://www.instagram.com/heartsforhenna/" target="_blank" rel="noopener">Follow @heartsforhenna for new designs</a></div>
+<header class="g-head">
+  <a class="brand" href="index.html" aria-label="Hearts for Henna home"><img src="logo.png" alt=""></a>
+  <a class="pill" href="index.html">Back to home</a>
 </header>
 
 <main>
-  <section class="band g-hero">
+  <section class="g-hero">
     <div class="wrap">
-      <h1>Gallery</h1>
-      <p>Work from our fundraiser tables and workshops, updated every two weeks. Tap any design to view it larger.</p>
-      <div class="ctas">
-        <a class="btn solid" href="https://www.instagram.com/heartsforhenna/" target="_blank" rel="noopener">Follow @heartsforhenna on Instagram</a>
-      </div>
+      <div class="title"><span class="lead">Our henna</span><h2>Gallery</h2></div>
+      <p>Designs from our fundraiser tables and workshops, updated every two weeks. Tap any design to view it larger.</p>
+      <div class="ctas"><a class="pill light" href="https://www.instagram.com/heartsforhenna/" target="_blank" rel="noopener">Follow on Instagram</a></div>
     </div>
   </section>
 
-  <section class="sec">
+  <div class="marquee gold" aria-hidden="true"><div class="run" id="marq"></div></div>
+
+  <section class="band cream">
     <div class="wrap">
       <div class="masonry" id="masonry"></div>
-      <div class="gallery-ctas reveal" style="justify-content:center">
-        <a class="btn line" href="https://www.instagram.com/heartsforhenna/" target="_blank" rel="noopener">See more on Instagram</a>
-      </div>
+      <div class="line-link right reveal"><a class="pill dark" href="https://www.instagram.com/heartsforhenna/" target="_blank" rel="noopener">See more on Instagram</a></div>
     </div>
   </section>
 </main>
@@ -48,19 +45,19 @@
 <footer>
   <div class="wrap">
     <a class="brand" href="index.html"><img src="logo.png" alt="">Hearts for Henna · UF</a>
-    <p>Email: heartsforhennauf@gmail.com</p>
+    <nav aria-label="Footer"><a href="index.html">Home</a><a href="https://www.instagram.com/heartsforhenna/" target="_blank" rel="noopener">Instagram</a></nav>
   </div>
 </footer>
 
 <div class="lightbox" id="lb" hidden role="dialog" aria-modal="true" aria-label="Design viewer">
-  <div class="frame">
+  <div class="frame-lb">
     <div id="lb-media"></div>
     <div class="bar">
       <span id="lb-count"></span>
       <div class="nav">
-        <button type="button" id="lb-prev">Previous</button>
-        <button type="button" id="lb-next">Next</button>
-        <button type="button" id="lb-close">Close</button>
+        <button class="pill" type="button" id="lb-prev">Previous</button>
+        <button class="pill" type="button" id="lb-next">Next</button>
+        <button class="pill light" type="button" id="lb-close">Close</button>
       </div>
     </div>
   </div>
@@ -71,10 +68,13 @@
 <script>
 (function(){
   const S = window.SITE, { el, photo, reveal } = window.HFH;
-  const ratios = ["4/5", "1/1", "3/4", "4/3", "4/5", "2/3"];
+  const chunk = ["Henna for a cause", "New designs every two weeks", "Hearts for Henna UF"].map(w => `<span>${w}</span>`).join("");
+  document.getElementById("marq").innerHTML = chunk.repeat(4) + chunk.repeat(4);
+
+  const ratios = ["3/4", "1/1", "4/5", "4/3", "3/4", "2/3"];
   const m = document.getElementById("masonry");
   S.gallery.forEach((g, i) => {
-    const f = el("figure", "reveal"); f.style.setProperty("--d", ((i % 3) * .08) + "s");
+    const f = el("figure", "reveal"); f.style.setProperty("--d", ((i % 3) * .1) + "s");
     f.tabIndex = 0; f.setAttribute("role", "button"); f.setAttribute("aria-label", "View design " + (i + 1));
     const p = photo(g.src, g.caption || "Henna design", "design", g.src ? "" : "Photo coming soon");
     if (!g.src) p.style.aspectRatio = ratios[i % ratios.length];
@@ -84,7 +84,6 @@
     m.append(f);
   });
 
-  // lightbox
   const lb = document.getElementById("lb"), media = document.getElementById("lb-media"), count = document.getElementById("lb-count");
   let cur = 0, lastFocus = null, sx = null;
   function show(i){
