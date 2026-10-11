@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="logo.png">
+<title>Hearts for Henna Gallery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Cinzel:wght@600&family=Figtree:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="styles.css">
+<style>
+  :root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+  body{margin:0}
+  img{max-width:100%}
+  [hidden]{display:none!important}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html" id="home-link"><img src="logo.png" alt="">Hearts for Henna</a>
+    <a class="btn line" href="index.html" id="back-link" style="padding:.55rem 1rem">← Back to home</a>
+  </div>
+</header>
+
+<main>
+  <section class="band g-hero">
+    <div class="wrap">
+      <h1>Gallery</h1>
+      <p>Work from our fundraiser tables and workshops, updated every two weeks. Tap any design to view it larger.</p>
+      <div class="ctas">
+        <a class="btn solid" href="https://www.instagram.com/heartsforhenna/" target="_blank" rel="noopener">Follow @heartsforhenna on Instagram</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="masonry" id="masonry"></div>
+      <div class="gallery-ctas reveal" style="justify-content:center">
+        <a class="btn line" href="https://www.instagram.com/heartsforhenna/" target="_blank" rel="noopener">See more on Instagram</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="logo.png" alt="">Hearts for Henna · UF</a>
+    <p>Email: heartsforhennauf@gmail.com</p>
+  </div>
+</footer>
+
+<div class="lightbox" id="lb" hidden role="dialog" aria-modal="true" aria-label="Design viewer">
+  <div class="frame">
+    <div id="lb-media"></div>
+    <div class="bar">
+      <span id="lb-count"></span>
+      <div class="nav">
+        <button type="button" id="lb-prev">Previous</button>
+        <button type="button" id="lb-next">Next</button>
+        <button type="button" id="lb-close">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script src="site.js"></script>
+<script>
+(function(){
+  const S = window.SITE, { el, photo, reveal } = window.HFH;
+  const ratios = ["4/5", "1/1", "3/4", "4/3", "4/5", "2/3"];
+  const m = document.getElementById("masonry");
+  S.gallery.forEach((g, i) => {
+    const f = el("figure", "reveal"); f.style.setProperty("--d", ((i % 3) * .08) + "s");
+    f.tabIndex = 0; f.setAttribute("role", "button"); f.setAttribute("aria-label", "View design " + (i + 1));
+    const p = photo(g.src, g.caption || "Henna design", "design", g.src ? "" : "Photo coming soon");
+    if (!g.src) p.style.aspectRatio = ratios[i % ratios.length];
+    f.append(p); if (g.caption) f.append(el("figcaption", null, g.caption));
+    f.addEventListener("click", () => open(i));
+    f.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " "){ e.preventDefault(); open(i); } });
+    m.append(f);
+  });
+
+  // lightbox
+  const lb = document.getElementById("lb"), media = document.getElementById("lb-media"), count = document.getElementById("lb-count");
+  let cur = 0, lastFocus = null, sx = null;
+  function show(i){
+    cur = (i + S.gallery.length) % S.gallery.length;
+    const g = S.gallery[cur];
+    media.replaceChildren(photo(g.src, g.caption || "Henna design", "design", g.src ? "" : "Photo coming soon"));
+    if (!g.src) media.firstChild.style.aspectRatio = "4/3";
+    count.textContent = (cur + 1) + " / " + S.gallery.length + (g.caption ? " · " + g.caption : "");
+  }
+  function open(i){ lastFocus = document.activeElement; show(i); lb.hidden = false; requestAnimationFrame(() => lb.classList.add("open")); document.getElementById("lb-close").focus(); document.body.style.overflow = "hidden"; }
+  function close(){ lb.classList.remove("open"); setTimeout(() => { lb.hidden = true; }, 250); document.body.style.overflow = ""; lastFocus?.focus(); }
+  document.getElementById("lb-prev").onclick = () => show(cur - 1);
+  document.getElementById("lb-next").onclick = () => show(cur + 1);
+  document.getElementById("lb-close").onclick = close;
+  lb.addEventListener("click", e => { if (e.target === lb) close(); });
+  document.addEventListener("keydown", e => { if (lb.hidden) return; if (e.key === "Escape") close(); if (e.key === "ArrowLeft") show(cur - 1); if (e.key === "ArrowRight") show(cur + 1); });
+  lb.addEventListener("touchstart", e => { sx = e.touches[0].clientX; }, { passive: true });
+  lb.addEventListener("touchend", e => { if (sx == null) return; const dx = e.changedTouches[0].clientX - sx; if (Math.abs(dx) > 50) show(cur + (dx < 0 ? 1 : -1)); sx = null; }, { passive: true });
+
+  reveal();
+})();
+</script>
+</body>
+</html>
