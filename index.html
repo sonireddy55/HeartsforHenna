@@ -124,7 +124,6 @@
       <div class="title reveal"><span class="lead">Meet our</span><h2>Officers</h2></div>
       <p class="label reveal" style="margin:-.6rem 0 1.6rem">Tap a card to read their bio</p>
       <div class="track reveal" id="officer-track" aria-label="Officers"></div>
-      <div class="bars" id="officer-bars"></div>
     </div>
   </section>
 
@@ -155,7 +154,7 @@
         <div class="title reveal"><span class="lead">Say hello to</span><h2>Hearts for Henna</h2></div>
         <p class="label reveal" style="color:var(--blush)">Email</p>
         <div class="email-row reveal">
-          <span class="addr" id="addr">heartsforhennauf@gmail.com</span>
+          <a class="addr mail" id="addr" href="mailto:heartsforhennauf@gmail.com?subject=Hello%20Hearts%20for%20Henna" title="Write us an email"><span class="txt">heartsforhennauf@gmail.com</span><span class="hint" aria-hidden="true">Write us an email <span class="arr">→</span></span></a>
           <button class="pill light" id="copy" type="button">Copy email</button>
         </div>
       </div>
@@ -233,7 +232,7 @@
     back.append(el("p", "role", o.role), el("p", "name", o.name), el("p", "bio", o.bio || ""), el("p", "cue", "Tap to flip back"));
     flip.append(front, back); card.append(flip); ot.append(card); cards.push(card);
   });
-  const oc = carousel(ot, { interval: 3200, bars: $("#officer-bars") });
+  const oc = carousel(ot, { interval: 3200 });
   const toggle = c => {
     const on = !c.classList.contains("flipped");
     c.classList.toggle("flipped", on); c.setAttribute("aria-pressed", on ? "true" : "false");
@@ -284,9 +283,9 @@
 
   // copy email
   $("#copy").addEventListener("click", async () => {
-    const b = $("#copy"), t = $("#addr").textContent;
+    const b = $("#copy"), txt = $("#addr .txt"), t = txt.textContent;
     try { await navigator.clipboard.writeText(t); b.textContent = "Copied"; }
-    catch (_) { const r = document.createRange(); r.selectNodeContents($("#addr")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = "Selected"; }
+    catch (_) { const r = document.createRange(); r.selectNodeContents(txt); const s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = "Selected"; }
     setTimeout(() => b.textContent = "Copy email", 2200);
   });
 

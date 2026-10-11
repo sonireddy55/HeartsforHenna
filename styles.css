@@ -231,7 +231,17 @@ p{margin:0}
 .contact .title .lead{color:var(--blush)}
 .contact .title h2{color:var(--white)}
 .email-row{display:flex;flex-wrap:wrap;align-items:center;gap:1rem;margin-top:.4rem}
-.email-row .addr{font-family:var(--font-wide);font-size:clamp(.85rem,2.4vw,1.25rem);letter-spacing:.04em;user-select:all;overflow-wrap:anywhere;min-width:0}
+.email-row .addr{font-family:var(--font-wide);font-size:clamp(.85rem,2.4vw,1.25rem);letter-spacing:.04em;overflow-wrap:anywhere;min-width:0}
+.mail{position:relative;display:inline-grid;gap:.35rem;text-decoration:none;color:var(--white);cursor:pointer;padding-bottom:.35rem}
+.mail .txt{position:relative;transition:color .3s}
+.mail::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease)}
+.mail .hint{font-family:var(--font-body);font-size:.85rem;letter-spacing:.02em;text-transform:none;color:var(--gold);opacity:0;transform:translateY(-4px);transition:opacity .3s,transform .3s var(--ease)}
+.mail .arr{display:inline-block;transition:transform .3s var(--ease)}
+.mail:hover .txt,.mail:focus-visible .txt{color:var(--blush)}
+.mail:hover::after,.mail:focus-visible::after{transform:scaleX(1)}
+.mail:hover .hint,.mail:focus-visible .hint{opacity:1;transform:none}
+.mail:hover .arr{transform:translateX(4px)}
+@media (hover:none){.mail .hint{opacity:1;transform:none}}
 .socials{display:grid;gap:.7rem}
 .socials a{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1rem 1.3rem;border-radius:999px;background:color-mix(in srgb,var(--white) 8%,transparent);text-decoration:none;font-family:var(--font-wide);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;transition:background .3s,padding .3s var(--ease)}
 .socials a:hover{background:var(--burgundy);padding-left:1.6rem}
