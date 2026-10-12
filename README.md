@@ -1,5 +1,9 @@
 # Hearts for Henna UF
 
+### 👉 [Open the live site](https://sonireddy55.github.io/HeartsforHenna/)
+
+> The link works once GitHub Pages is turned on (see *Hosting on GitHub Pages* below).
+
 Website for Hearts for Henna, a service-based student organization at the University of Florida.
 
 Plain static site: no build step, no dependencies. Open `index.html` in a browser, or host the folder on GitHub Pages, Netlify, or Vercel.
