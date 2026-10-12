@@ -1,8 +1,6 @@
 # Hearts for Henna at UF
 
-### 👉 [Open the live site](https://sonireddy55.github.io/HeartsforHenna/)
-
-> Hosted free on GitHub Pages. The link works once Pages is turned on; see [Hosting](#hosting).
+### 👉 [heartsforhenna.org](https://heartsforhenna.org)
 
 Website for Hearts for Henna, a service-based student organization at the University of Florida.
 
@@ -20,7 +18,8 @@ Plain static site: no build step, no dependencies. Open `index.html` in a browse
 | `logo.png` | Club logo |
 | `og-image.png` | Preview image shown when the link is shared (iMessage, Instagram, GroupMe, LinkedIn) |
 | `404.html` | Page shown for broken links |
-| `sitemap.xml` | Lists the pages for search engines (submit it in Google Search Console) |
+| `robots.txt`, `sitemap.xml` | Tell search engines what to index (submit the sitemap in Google Search Console) |
+| `CNAME` | Tells GitHub Pages to serve the site at heartsforhenna.org (created by GitHub when the domain is saved in settings; don't delete it) |
 | `.nojekyll` | Tells GitHub Pages to serve the files as-is, with no processing |
 
 ## Updating content
@@ -36,32 +35,50 @@ Any `src` or `photo` left as `null` shows a placeholder.
 
 ## Hosting
 
-Hosted free on **GitHub Pages** at https://sonireddy55.github.io/HeartsforHenna/
+Hosted on **GitHub Pages** (free) at the custom domain **heartsforhenna.org**. Every push to `main` updates the site automatically.
 
-### Turn it on (one time)
+### Domain setup (one time)
 
-1. In this repo, go to **Settings → Pages**.
-2. Under **Build and deployment**, set Source to **Deploy from a branch**.
-3. Pick branch **`main`** and folder **`/ (root)`**, then **Save**.
-4. After about a minute, the site is live at the link above. Every push to `main` updates it automatically.
+Do these in order. GitHub requires the domain to be saved in Pages settings **before** the DNS records are added, so no one else can claim it.
 
-### Get it on Google (one time, after Pages is on)
+1. **Buy `heartsforhenna.org`** signed in with the club account (heartsforhennauf@gmail.com). Turn on auto-renew.
+2. **Turn on Pages:** repo **Settings → Pages** → Source **Deploy from a branch** → branch **`main`**, folder **`/ (root)`** → **Save**.
+3. **Save the domain:** on the same page, under **Custom domain**, enter `heartsforhenna.org` → **Save**. GitHub commits a `CNAME` file to `main`.
+4. **Add DNS records** at the registrar. Delete any default parking records first, then add:
+
+   | Type | Host | Value |
+   |---|---|---|
+   | A | `@` | `185.199.108.153` |
+   | A | `@` | `185.199.109.153` |
+   | A | `@` | `185.199.110.153` |
+   | A | `@` | `185.199.111.153` |
+   | AAAA | `@` | `2606:50c0:8000::153` |
+   | AAAA | `@` | `2606:50c0:8001::153` |
+   | AAAA | `@` | `2606:50c0:8002::153` |
+   | AAAA | `@` | `2606:50c0:8003::153` |
+   | CNAME | `www` | `sonireddy55.github.io` |
+
+5. **Wait for the green check** next to the domain in Pages settings (minutes to 24 hours), then check **Enforce HTTPS**.
+6. **Recommended:** verify the domain at **GitHub → your profile Settings → Pages → Add a domain**. This protects it from takeover if Pages is ever turned off.
+
+Source: [GitHub Docs: Managing a custom domain](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site)
+
+### Get it on Google (one time, after the domain works)
 
 1. Go to [Google Search Console](https://search.google.com/search-console) and sign in with the club Gmail.
-2. **Add property → URL prefix** → `https://sonireddy55.github.io/HeartsforHenna/`.
-3. Choose the **HTML file** verification method and download the file Google gives you (named like `google1234abcd.html`).
-4. Add that file to the root of this repo and push. Wait a minute for Pages to update, then click **Verify**.
-5. Go to **Sitemaps**, enter `sitemap.xml`, and submit.
-6. Go to **URL inspection**, paste the home page URL, and click **Request indexing**.
+2. **Add property → Domain** → `heartsforhenna.org`. Google gives you a **TXT** record; add it at the registrar (Host `@`), then click **Verify**.
+3. Go to **Sitemaps**, enter `sitemap.xml`, and submit.
+4. Go to **URL inspection**, paste `https://heartsforhenna.org/`, and click **Request indexing**.
 
 Google usually indexes a new site within a few days to a couple of weeks. To help it rank for "Hearts for Henna", put the site link in the Instagram bio and on the Linktree.
 
-### Moving to a custom domain later (optional)
+### Ownership and renewal
 
-If the club buys a domain later (for example `heartsforhennaatuf.org`, about $9 the first year and $11/year after at Cloudflare):
+| | |
+|---|---|
+| Domain | heartsforhenna.org |
+| Owner account | heartsforhennauf@gmail.com |
+| Registrar | _fill in after purchase_ |
+| Renews | _fill in after purchase_ |
 
-1. Register it under the **club account** (heartsforhennauf@gmail.com) and turn on auto-renew.
-2. In **Settings → Pages → Custom domain**, enter the domain and follow GitHub's DNS instructions, then check **Enforce HTTPS**.
-3. Find and replace `https://sonireddy55.github.io/HeartsforHenna` with the new domain in `index.html`, `gallery.html`, and `sitemap.xml`, and change `/HeartsforHenna/` to `/` in `404.html`.
-
-**Board handoff:** when the technical director changes, give the next one access to this GitHub repo (and the domain account, if one exists).
+**Board handoff:** when the technical director changes, give the next one access to this GitHub repo and the registrar account, and update this table.
