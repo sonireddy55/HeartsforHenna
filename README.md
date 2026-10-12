@@ -2,7 +2,7 @@
 
 ### 👉 [Open the live site](https://sonireddy55.github.io/HeartsforHenna/)
 
-> Current link is GitHub Pages (works once Pages is turned on in repo **Settings → Pages**, `main` / root). The permanent address will be **https://heartsforhennaatuf.org** once the domain is registered and connected; see [Domain and hosting](#domain-and-hosting).
+> Hosted free on GitHub Pages. The link works once Pages is turned on; see [Hosting](#hosting).
 
 Website for Hearts for Henna, a service-based student organization at the University of Florida.
 
@@ -20,7 +20,8 @@ Plain static site: no build step, no dependencies. Open `index.html` in a browse
 | `logo.png` | Club logo |
 | `og-image.png` | Preview image shown when the link is shared (iMessage, Instagram, GroupMe, LinkedIn) |
 | `404.html` | Page shown for broken links |
-| `robots.txt`, `sitemap.xml` | Help search engines find and index the site |
+| `sitemap.xml` | Lists the pages for search engines (submit it in Google Search Console) |
+| `.nojekyll` | Tells GitHub Pages to serve the files as-is, with no processing |
 
 ## Updating content
 
@@ -33,37 +34,23 @@ Edit `data.js`; both pages read from it.
 
 Any `src` or `photo` left as `null` shows a placeholder.
 
-## Domain and hosting
+## Hosting
 
-Domain: `heartsforhennaatuf.org`. Host: Cloudflare Pages, which redeploys automatically on every push to `main` and gives each pull request its own preview link.
+Hosted free on **GitHub Pages** at https://sonireddy55.github.io/HeartsforHenna/
 
-### 1. Register the domain (Cloudflare Registrar)
+### Turn it on (one time)
 
-1. Sign in to Cloudflare with the **club account** (heartsforhennauf@gmail.com), not a personal one, so the domain stays with the club.
-2. Go to **Domain Registration → Register Domains**, search `heartsforhennaatuf.org`, and buy it.
-3. Turn on **auto-renew**.
+1. In this repo, go to **Settings → Pages**.
+2. Under **Build and deployment**, set Source to **Deploy from a branch**.
+3. Pick branch **`main`** and folder **`/ (root)`**, then **Save**.
+4. After about a minute, the site is live at the link above. Every push to `main` updates it automatically.
 
-### 2. Deploy the site (Cloudflare Pages)
+### Moving to a custom domain later (optional)
 
-1. In the dashboard, go to **Workers & Pages → Create → Pages → Connect to Git**.
-2. Authorize GitHub and pick the `HeartsforHenna` repo.
-3. Build settings: framework preset **None**, build command **empty**, output directory **`/`**. Save and deploy.
-4. The site goes live at a `*.pages.dev` address within a minute.
+If the club buys a domain later (for example `heartsforhennaatuf.org`, about $9 the first year and $11/year after at Cloudflare):
 
-### 3. Connect the domain
+1. Register it under the **club account** (heartsforhennauf@gmail.com) and turn on auto-renew.
+2. In **Settings → Pages → Custom domain**, enter the domain and follow GitHub's DNS instructions, then check **Enforce HTTPS**.
+3. Find and replace `https://sonireddy55.github.io/HeartsforHenna` with the new domain in `index.html`, `gallery.html`, and `sitemap.xml`, and change `/HeartsforHenna/` to `/` in `404.html`.
 
-1. In the Pages project, open **Custom domains → Set up a custom domain**.
-2. Enter `heartsforhennaatuf.org` and confirm. Since the domain is already on Cloudflare, DNS and HTTPS are set up automatically.
-3. Optionally add `www.heartsforhennaatuf.org` too, and set it to redirect to the main domain.
-4. Update the live-site link at the top of this README to the new domain, and turn off GitHub Pages (**Settings → Pages**) so there's only one copy of the site online.
-
-### Ownership and renewal
-
-| | |
-|---|---|
-| Domain owner account | heartsforhennauf@gmail.com |
-| Registrar | Cloudflare |
-| Renews | _fill in after purchase_ |
-| Approximate renewal cost | ~$11/year for .org at Cloudflare (check the dashboard for the current price) |
-
-**Board handoff:** when the technical director changes, transfer access to the Cloudflare and GitHub accounts and update this table.
+**Board handoff:** when the technical director changes, give the next one access to this GitHub repo (and the domain account, if one exists).
