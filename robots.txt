@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://heartsforhennaatuf.org/sitemap.xml
