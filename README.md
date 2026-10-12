@@ -45,6 +45,17 @@ Hosted free on **GitHub Pages** at https://sonireddy55.github.io/HeartsforHenna/
 3. Pick branch **`main`** and folder **`/ (root)`**, then **Save**.
 4. After about a minute, the site is live at the link above. Every push to `main` updates it automatically.
 
+### Get it on Google (one time, after Pages is on)
+
+1. Go to [Google Search Console](https://search.google.com/search-console) and sign in with the club Gmail.
+2. **Add property → URL prefix** → `https://sonireddy55.github.io/HeartsforHenna/`.
+3. Choose the **HTML file** verification method and download the file Google gives you (named like `google1234abcd.html`).
+4. Add that file to the root of this repo and push. Wait a minute for Pages to update, then click **Verify**.
+5. Go to **Sitemaps**, enter `sitemap.xml`, and submit.
+6. Go to **URL inspection**, paste the home page URL, and click **Request indexing**.
+
+Google usually indexes a new site within a few days to a couple of weeks. To help it rank for "Hearts for Henna", put the site link in the Instagram bio and on the Linktree.
+
 ### Moving to a custom domain later (optional)
 
 If the club buys a domain later (for example `heartsforhennaatuf.org`, about $9 the first year and $11/year after at Cloudflare):
