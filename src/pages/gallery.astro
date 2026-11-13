@@ -1,0 +1,70 @@
+---
+import Base from "../layouts/Base.astro";
+import Photo from "../components/Photo.astro";
+import Marquee from "../components/Marquee.astro";
+import { SITE } from "../data/site.js";
+
+const ratios = ["3/4", "1/1", "4/5", "4/3", "3/4", "2/3"];
+---
+<Base
+  title="Hearts for Henna Gallery"
+  description="Henna designs from Hearts for Henna fundraisers and workshops at the University of Florida."
+  canonical="https://heartsforhenna.org/gallery.html"
+  ogTitle="Gallery | Hearts for Henna at UF"
+  rootStyle="background:var(--burgundy)"
+>
+<div class="announce"><a href="https://www.instagram.com/heartsforhenna/" target="_blank" rel="noopener">Follow @heartsforhenna for new designs</a></div>
+<header class="g-head">
+  <a class="brand" href="/" aria-label="Hearts for Henna home"><img src="/logo.png" alt=""></a>
+  <a class="pill" href="/">Back to home</a>
+</header>
+
+<main>
+  <section class="g-hero">
+    <div class="wrap">
+      <div class="title"><span class="lead">Our henna</span><h2>Gallery</h2></div>
+      <p>Designs from our fundraiser tables and workshops, updated every two weeks. Tap any design to view it larger.</p>
+      <div class="ctas"><a class="pill light" href="https://www.instagram.com/heartsforhenna/" target="_blank" rel="noopener">Follow on Instagram</a></div>
+    </div>
+  </section>
+
+  <Marquee gold words={["Henna for a cause", "New designs every two weeks", "Hearts for Henna UF"]} />
+
+  <section class="band cream">
+    <div class="wrap">
+      <div class="masonry" id="masonry">
+        {SITE.gallery.map((g, i) => (
+          <figure class="reveal" style={`--d:${(i % 3) * 0.1}s`} tabindex="0" role="button" aria-label={`View design ${i + 1}`}>
+            <Photo src={g.src} alt={g.caption || "Henna design"} label={g.src ? "" : "Photo coming soon"} style={g.src ? undefined : `aspect-ratio:${ratios[i % ratios.length]}`} />
+            {g.caption && <figcaption>{g.caption}</figcaption>}
+          </figure>
+        ))}
+      </div>
+      <div class="line-link right reveal"><a class="pill dark" href="https://www.instagram.com/heartsforhenna/" target="_blank" rel="noopener">See more on Instagram</a></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="/"><img src="/logo.png" alt="">Hearts for Henna · UF</a>
+    <nav aria-label="Footer"><a href="/">Home</a><a href="https://www.instagram.com/heartsforhenna/" target="_blank" rel="noopener">Instagram</a></nav>
+  </div>
+</footer>
+
+<div class="lightbox" id="lb" hidden role="dialog" aria-modal="true" aria-label="Design viewer">
+  <div class="frame-lb">
+    <div id="lb-media"></div>
+    <div class="bar">
+      <span id="lb-count"></span>
+      <div class="nav">
+        <button class="pill" type="button" id="lb-prev">Previous</button>
+        <button class="pill" type="button" id="lb-next">Next</button>
+        <button class="pill light" type="button" id="lb-close">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+  <script type="application/json" id="gallery-data" set:html={JSON.stringify(SITE.gallery)} />
+  <script>import "../scripts/gallery.js";</script>
+</Base>

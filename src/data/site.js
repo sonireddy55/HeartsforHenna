@@ -3,7 +3,7 @@
    Edit the values below to update both the home page and the gallery.
    photo / src: null shows a placeholder. Replace with an image path or URL.
    ============================================================ */
-window.SITE = {
+export const SITE = {
   /* bio: placeholder text in [brackets] until each officer sends theirs. */
   officers: [
     { name: "Yasmeen Mujtaba", role: "Co-President", photo: null,

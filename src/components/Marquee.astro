@@ -1,0 +1,8 @@
+---
+interface Props { words: string[]; gold?: boolean }
+const { words, gold = false } = Astro.props;
+const run = [...words, ...words, ...words, ...words, ...words, ...words, ...words, ...words];
+---
+<div class:list={["marquee", { gold }]} aria-hidden="true">
+  <div class="run">{run.map((w) => <span>{w}</span>)}</div>
+</div>

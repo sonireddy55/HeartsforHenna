@@ -1,5 +1,4 @@
-/* Shared helpers: placeholders, carousels, reveal-on-scroll. */
-(function(){
+/* Shared client helpers: placeholders, carousels, reveal-on-scroll. */
   const NS = "http://www.w3.org/2000/svg";
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const el = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; };
@@ -99,5 +98,4 @@
     document.querySelectorAll(".reveal").forEach(e => { if (e.getBoundingClientRect().top > innerHeight * .92){ e.classList.add("pre"); io.observe(e); } });
   }
 
-  window.HFH = { el, photo, carousel, reveal };
-})();
+  export { el, photo, carousel, reveal };

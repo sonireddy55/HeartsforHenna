@@ -1,0 +1,235 @@
+---
+import Base from "../layouts/Base.astro";
+import Photo from "../components/Photo.astro";
+import Marquee from "../components/Marquee.astro";
+import OfficerCard from "../components/OfficerCard.astro";
+import EventCard from "../components/EventCard.astro";
+import { SITE } from "../data/site.js";
+
+const money = (n) => "$" + Math.round(n).toLocaleString("en-US");
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Hearts for Henna",
+  "alternateName": [
+    "Hearts for Henna at UF",
+    "Hearts for Henna UF",
+    "HFH"
+  ],
+  "description": "A service-based student organization at the University of Florida that promotes henna as an art form and raises money for charity through henna fundraisers and workshops.",
+  "url": "https://heartsforhenna.org/",
+  "logo": "https://heartsforhenna.org/logo.png",
+  "email": "heartsforhennauf@gmail.com",
+  "location": {
+    "@type": "Place",
+    "name": "University of Florida",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Gainesville",
+      "addressRegion": "FL",
+      "addressCountry": "US"
+    }
+  },
+  "sameAs": [
+    "https://www.instagram.com/heartsforhenna/",
+    "https://www.facebook.com/profile.php?id=100086264873207",
+    "https://linktr.ee/heartsforhenna"
+  ]
+};
+
+// White hearts orbiting the logo (two rings, opposite directions)
+const HEART = '<svg viewBox="0 0 24 22" aria-hidden="true"><path d="M12 21.5C5.2 16.3 0 12.2 0 6.8 0 3 2.9 0 6.5 0c2.2 0 4.2 1.1 5.5 2.9C13.3 1.1 15.3 0 17.5 0 21.1 0 24 3 24 6.8c0 5.4-5.2 9.5-12 14.7z"/></svg>';
+const ringCfg = [
+  { n: 9, rr: 0.47, s: [14, 22], o: 1, cls: "" },
+  { n: 7, rr: 0.39, s: [9, 13], o: 0.7, cls: " reverse" },
+];
+const rings = ringCfg
+  .map((cfg) => ({
+    cls: cfg.cls,
+    hearts: Array.from({ length: cfg.n }, (_, i) => {
+      const size = cfg.s[0] + ((i * 7) % (cfg.s[1] - cfg.s[0] + 1));
+      return { style: `--a:${(360 / cfg.n) * i + (cfg.cls ? 20 : 0)}deg;--rr:${cfg.rr};--s:${size}px;--o:${cfg.o};--dl:${(i * 0.27).toFixed(2)}s` };
+    }),
+  }))
+  .reverse(); // original code prepended each ring, so the second ring sits first in the DOM
+---
+<Base
+  title="Hearts for Henna UF"
+  description="Hearts for Henna is a service-based student organization at the University of Florida that uses henna to raise money for charity."
+  canonical="https://heartsforhenna.org/"
+  ogTitle="Hearts for Henna at UF"
+  jsonLd={jsonLd}
+>
+<div class="announce"><a href="https://groupme.com/join_group/60295306/9SDdNBzG" target="_blank" rel="noopener">Join the Hearts for Henna GroupMe</a></div>
+
+<div class="menu" id="menu" aria-hidden="true">
+  <button class="pill close" type="button" id="menu-close">Close</button>
+  <div>
+    <p class="script" style="text-align:center">Hearts for Henna</p>
+    <ul>
+      <li style="transition-delay:.15s"><a href="#about">About</a></li>
+      <li style="transition-delay:.2s"><a href="#henna">What is henna</a></li>
+      <li style="transition-delay:.25s"><a href="#impact">Impact</a></li>
+      <li style="transition-delay:.3s"><a href="#officers">Officers</a></li>
+      <li style="transition-delay:.35s"><a href="#events">Events</a></li>
+      <li style="transition-delay:.4s"><a href="#gallery">Gallery</a></li>
+      <li style="transition-delay:.45s"><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</div>
+
+<main id="top">
+  <section class="hero">
+    <div class="topbar">
+      <a class="brand wordmark" href="#top">Hearts<br>for Henna</a>
+      <button class="menu-btn" type="button" id="menu-open" aria-controls="menu" aria-expanded="false">Menu</button>
+    </div>
+    <div class="wrap inner">
+      <div class="orbit-wrap" id="orbit">
+        {rings.map((r) => (
+          <div class={"orbit" + r.cls} aria-hidden="true">
+            {r.hearts.map((h) => <span class="h" style={h.style} set:html={HEART} />)}
+          </div>
+        ))}
+        <img src="/logo.png" alt="Hearts for Henna logo">
+      </div>
+      <h1>Uniting students &amp; charities with henna</h1>
+      <p class="script">at the University of Florida</p>
+      <div class="ctas">
+        <a class="pill light" href="#events">Volunteer sign-ups</a>
+        <a class="pill" href="#about">Meet the club</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="strip">
+    <span class="chev" aria-hidden="true"><span>›</span><span>›</span><span>›</span></span>
+    <a class="pill light" href="https://groupme.com/join_group/60295306/9SDdNBzG" target="_blank" rel="noopener">Join the GroupMe</a>
+    <span class="chev l" aria-hidden="true"><span>‹</span><span>‹</span><span>‹</span></span>
+  </div>
+
+  <section class="band cream" id="about">
+    <div class="wrap split">
+      <div>
+        <div class="title reveal"><span class="lead">Meet</span><h2>Hearts for Henna</h2></div>
+        <p class="caps reveal">Hearts for Henna is a service-based organization that promotes henna as a form of art that can unite and benefit various communities through fundraising and charity events. We also seek to teach UF students how to apply henna through workshops.</p>
+        <div class="offers">
+          <div class="offer reveal" style="--d:.05s"><h3>Fundraisers &amp; charity events</h3><p>Henna at campus events, with proceeds going to our charity of the year.</p></div>
+          <div class="offer reveal" style="--d:.15s"><h3>Workshops</h3><p>Hands-on sessions where UF students learn to apply henna.</p></div>
+        </div>
+        <div class="line-link reveal"><a class="pill dark" href="#events">See our events</a></div>
+      </div>
+      <div class="frame reveal unveil" id="about-photo"><Photo alt="Hearts for Henna members" label="Club photo coming soon" /></div>
+    </div>
+  </section>
+
+  <Marquee words={["Henna for a cause", "100% natural henna", "Hearts for Henna UF"]} />
+
+  <section class="band blush" id="henna">
+    <div class="blob-deco" aria-hidden="true"></div>
+    <div class="wrap split flip" style="position:relative">
+      <div class="arches">
+        <div class="frame arch reveal unveil" id="henna-a"><Photo alt="Henna design" label="Photo coming soon" /></div>
+        <div class="frame oval reveal unveil" style="--d:.15s" id="henna-b"><Photo alt="Henna design" label="Photo coming soon" /></div>
+      </div>
+      <div>
+        <div class="title reveal"><span class="lead">What is</span><h2>Henna?</h2></div>
+        <div style="display:grid;gap:1rem">
+          <p class="caps reveal">Henna is a natural dye that is derived from the dried leaves of the plant <em>Lawsonia inermis</em>. Henna originated over 5,000 years ago in North Africa and the Middle East.</p>
+          <p class="caps reveal">It is often used to decorate the bride's hands and feet for a wedding. A common myth and cultural belief is that when the stain on a bride's hands is darker, it symbolizes that the bride and groom's love is strong.</p>
+          <p class="caps reveal">Henna is also used as a natural hair dye and provides moisture for the scalp.</p>
+        </div>
+        <div class="natural reveal"><b>We use</b><span>100% natural henna</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band burg" id="impact">
+    <div class="wrap impact">
+      <div class="tally reveal slide-l">
+        <div class="title"><span class="lead">Our</span><h2>Impact</h2></div>
+        <p class="label">Total fundraised</p>
+        <span class="amount" id="raised" data-target={SITE.fundraised.amount}>{money(SITE.fundraised.amount)}</span>
+        <span class="asof" id="raised-asof">Running total as of {SITE.fundraised.asOf}</span>
+      </div>
+      <div class="why reveal slide-r">
+        <div class="dots" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="rows">
+          <p class="sub">Charity of the year</p>
+          <p class="big" id="coty">{SITE.charityOfTheYear}</p>
+          <p class="sub" style="margin-top:1.4rem">Previous charities</p>
+          <div id="prev" style="display:grid;gap:.5rem">{SITE.previousCharities.map((c) => <p>{c}</p>)}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Marquee gold words={["Come get henna", "Support Food 4 Kids", "Join the GroupMe"]} />
+
+  <section class="band cream" id="officers">
+    <div class="wrap">
+      <div class="title reveal"><span class="lead">Meet our</span><h2>Officers</h2></div>
+      <p class="label reveal" style="margin:-.6rem 0 1.6rem">Tap a card to read their bio</p>
+      <div class="track reveal" id="officer-track" aria-label="Officers">{SITE.officers.map((o) => <OfficerCard o={o} />)}</div>
+    </div>
+  </section>
+
+  <section class="band blush" id="events">
+    <div class="wrap">
+      <div class="title reveal"><span class="lead">Come to our</span><h2>Events</h2></div>
+      <p class="caps reveal" style="max-width:40rem;margin-bottom:2.4rem;text-align:left">Sign-up sheets are posted here as each event opens. New dates also go out on Instagram and in the GroupMe.</p>
+      <p class="subhead first">Open sign-ups</p>
+      <div class="events" id="open-events">{SITE.openEvents.map((e, i) => <EventCard ev={e} open index={i} />)}</div>
+      <p class="subhead">Past fundraisers</p>
+      <div class="events" id="past-events">{SITE.pastEvents.map((e, i) => <EventCard ev={e} index={i} />)}</div>
+    </div>
+  </section>
+
+  <section class="band cream" id="gallery">
+    <div class="wrap">
+      <div class="title reveal"><span class="lead">Our</span><h2>Gallery</h2></div>
+      <p class="label reveal" style="margin:-.6rem 0 1.6rem">New designs every two weeks</p>
+      <div class="track reveal" id="recent-track" aria-label="Recent designs">
+        {SITE.gallery.slice(0, 3).map((g) => (
+          <figure class="slide">
+            <Photo src={g.src} alt={g.caption || "Henna design"} label={g.src ? "" : "Photo coming soon"} />
+            {g.caption && <figcaption>{g.caption}</figcaption>}
+          </figure>
+        ))}
+      </div>
+      <div class="bars" id="recent-bars"></div>
+      <div class="line-link right reveal"><span style="display:flex;gap:.7rem;flex-wrap:wrap"><a class="pill dark" href="gallery.html">See the full gallery</a><a class="pill" href="https://www.instagram.com/heartsforhenna/" target="_blank" rel="noopener">More on Instagram</a></span></div>
+    </div>
+  </section>
+
+  <section class="band contact" id="contact">
+    <div class="wrap grid">
+      <div>
+        <div class="title reveal"><span class="lead">Say hello to</span><h2>Hearts for Henna</h2></div>
+        <p class="label reveal" style="color:var(--blush)">Email</p>
+        <div class="email-row reveal">
+          <a class="addr mail" id="addr" href="mailto:heartsforhennauf@gmail.com?subject=Hello%20Hearts%20for%20Henna" target="_blank" rel="noopener" title="Write us an email"><span class="txt">heartsforhennauf@gmail.com</span><span class="hint" aria-hidden="true">Write us an email <span class="arr">→</span></span></a>
+          <button class="pill light" id="copy" type="button">Copy email</button>
+        </div>
+      </div>
+      <div class="socials">
+        <a class="reveal slide-r" href="https://www.instagram.com/heartsforhenna/" target="_blank" rel="noopener">Instagram <span>@heartsforhenna</span></a>
+        <a class="reveal slide-r" style="--d:.1s" href="https://groupme.com/join_group/60295306/9SDdNBzG" target="_blank" rel="noopener">GroupMe <span>Join the chat</span></a>
+        <a class="reveal slide-r" style="--d:.2s" href="https://linktr.ee/heartsforhenna" target="_blank" rel="noopener">Linktree <span>All links</span></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="/logo.png" alt="">Hearts for Henna · UF</a>
+    <nav aria-label="Footer">
+      <a href="#about">About</a><a href="#officers">Officers</a><a href="#events">Events</a><a href="gallery.html">Gallery</a><a href="#contact">Contact</a>
+    </nav>
+  </div>
+</footer>
+
+<button class="to-top" id="to-top" type="button">Back to top</button>
+  <script>import "../scripts/home.js";</script>
+</Base>

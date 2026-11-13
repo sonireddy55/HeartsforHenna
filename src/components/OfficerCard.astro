@@ -1,0 +1,16 @@
+---
+import Photo from "./Photo.astro";
+interface Props { o: { name: string; role: string; photo: string | null; bio?: string } }
+const { o } = Astro.props;
+---
+<div class="officer" tabindex="0" role="button" aria-pressed="false" aria-label={`${o.name}, ${o.role}. Show bio`}>
+  <div class="flip">
+    <div class="face front">
+      <Photo src={o.photo} alt={o.name} kind="person" />
+      <div><p class="role">{o.role}</p><p class="name">{o.name}</p><p class="cue">Tap for bio</p></div>
+    </div>
+    <div class="face back" aria-hidden="true">
+      <p class="role">{o.role}</p><p class="name">{o.name}</p><p class="bio">{o.bio || ""}</p><p class="cue">Tap to flip back</p>
+    </div>
+  </div>
+</div>

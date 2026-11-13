@@ -1,0 +1,19 @@
+---
+interface Props {
+  ev: { name: string; when: string; details?: string[][]; prices?: string[][]; signup?: string };
+  open?: boolean;
+  index?: number;
+}
+const { ev, open = false, index = 0 } = Astro.props;
+---
+<article class:list={["event", "reveal", { open }]} style={`--d:${index * 0.1}s`}>
+  <div class="top"><span class="when">{ev.when}</span><span class="status">{open ? "Sign-up open" : "Past event"}</span></div>
+  <h3>{ev.name}</h3>
+  {ev.details?.length ? (
+    <dl class="meta">{ev.details.map(([k, v]) => (<><dt>{k}</dt><dd>{v}</dd></>))}</dl>
+  ) : null}
+  {ev.prices ? (
+    <div class="prices">{ev.prices.map(([m, s]) => (<div class="price"><b>{m}</b><small>{s}</small></div>))}</div>
+  ) : null}
+  {open && ev.signup ? <a class="pill" href={ev.signup} target="_blank" rel="noopener">Sign up</a> : null}
+</article>

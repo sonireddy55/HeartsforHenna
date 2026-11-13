@@ -1,0 +1,30 @@
+---
+// Photo or placeholder (club photos are still "null" in data until members send them).
+interface Props { src?: string | null; alt?: string; kind?: "design" | "person"; label?: string; style?: string }
+const { src = null, alt = "", kind = "design", label = "", style } = Astro.props;
+const petals = Array.from({ length: 8 }, (_, i) => {
+  const a = (i * Math.PI) / 4;
+  return { cx: (50 + Math.cos(a) * 22).toFixed(1), cy: (50 + Math.sin(a) * 22).toFixed(1), deg: i * 45 };
+});
+---
+{src ? (
+  <div class="ph" style={style}><img src={src} alt={alt} loading="lazy" /></div>
+) : (
+  <div class="ph" role="img" aria-label={alt || "Photo coming soon"} style={style}>
+    {kind === "person" ? (
+      <svg viewBox="0 0 100 100" aria-hidden="true">
+        <circle cx="50" cy="36" r="17" fill="currentColor" />
+        <path d="M16 96c2-22 16-34 34-34s32 12 34 34z" fill="currentColor" />
+      </svg>
+    ) : (
+      <svg viewBox="0 0 100 100" aria-hidden="true">
+        {petals.map((p) => (
+          <ellipse cx={p.cx} cy={p.cy} rx="11" ry="5.5" transform={`rotate(${p.deg} ${p.cx} ${p.cy})`} fill="none" stroke="currentColor" stroke-width="1.6" />
+        ))}
+        <circle cx="50" cy="50" r="8" fill="none" stroke="currentColor" stroke-width="1.6" />
+        <circle cx="50" cy="50" r="2.6" fill="currentColor" />
+      </svg>
+    )}
+    {label && <span class="ph-label">{label}</span>}
+  </div>
+)}
